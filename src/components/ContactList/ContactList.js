@@ -19,7 +19,14 @@ const ContactList = ({ visibleContacts, deleteContact }) => {
 };
 
 ContactList.propTypes = {
-   visibleContacts: PropTypes.array.isRequired,
+   visibleContacts: PropTypes.arrayOf(
+      PropTypes.shape({
+         id: PropTypes.string.isRequired,
+         name: PropTypes.string.isRequired,
+         number: PropTypes.string.isRequired,
+      })
+   ),
+   deleteContact: PropTypes.func.isRequired,
 };
 
 export default ContactList;

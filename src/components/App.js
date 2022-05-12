@@ -30,15 +30,19 @@ class App extends Component {
    };
    checkNewContact = newContact => {
       if (
-         this.state.contacts.find(contact => contact.name === newContact.name)
+         this.state.contacts.find(
+            contact =>
+               contact.name.toLocaleLowerCase() ===
+               newContact.name.toLocaleLowerCase()
+         )
       ) {
          alert(newContact.name + ' is alredy in contacts');
          return true;
       }
       return false;
    };
-   onChangeFilter = async e => {
-      await this.setState({ filter: e.target.value });
+   onChangeFilter = e => {
+      this.setState({ filter: e.target.value });
    };
    deleteContact = id => {
       this.setState(prevState => ({

@@ -9,20 +9,15 @@ const INITIALE_STATE = {
 };
 class ContactForm extends Component {
    state = { name: '', number: '' };
-   onChange = async e => {
-      if (e.target.name === 'name') {
-         await this.setState({ name: e.target.value });
-      }
-      if (e.target.name === 'number') {
-         await this.setState({ number: e.target.value });
-      }
+   onChange = e => {
+      this.setState({ [e.target.name]: e.target.value });
    };
    onSubmit = e => {
       e.preventDefault();
-      const { name, number } = e.target;
+      const { name, number } = this.state;
       const newContact = {
-         name: name.value,
-         number: number.value,
+         name: name,
+         number: number,
          id: nanoid(5),
       };
       if (this.props.checkNewContact(newContact)) {
@@ -70,6 +65,7 @@ class ContactForm extends Component {
 
 ContactForm.propTypes = {
    onSubmit: PropTypes.func.isRequired,
+   checkNewContact: PropTypes.func.isRequired,
 };
 
 export default ContactForm;
