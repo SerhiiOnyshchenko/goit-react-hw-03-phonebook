@@ -16,8 +16,8 @@ class ContactForm extends Component {
       e.preventDefault();
       const { name, number } = this.state;
       const newContact = {
-         name: name,
-         number: number,
+         name,
+         number,
          id: nanoid(5),
       };
       if (this.props.checkNewContact(newContact)) {
